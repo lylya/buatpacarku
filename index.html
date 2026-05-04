@@ -15,16 +15,20 @@
 			body {
 				margin: 0;
 				padding: 0;
+				min-height: 100%;
 				font-family: "Poppins", sans-serif;
-				background: linear-gradient(180deg, #89cff0, #b6e0fe);
+				background: linear-gradient(180deg, #89cff0, #6fb3d2);
 			}
 
-			/* CONTAINER NORMAL (NO FLEX CENTER!) */
+			/* FULL LAYOUT */
 			.container {
-				max-width: 500px;
-				margin: 0 auto;
-				padding: 30px 15px 80px;
-				text-align: center;
+				min-height: 100vh; /* 🔥 ini penting */
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				padding: 20px;
+				box-sizing: border-box;
 			}
 
 			/* TITLE */
@@ -36,12 +40,24 @@
 			}
 
 			/* VIDEO */
+			.video-box {
+				width: 100%;
+				max-width: 400px;
+				height: 220px; /* 🔥 kasih tinggi fix */
+				background: rgba(255, 255, 255, 0.15);
+				border-radius: 25px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+			}
 			video {
 				width: 100%;
-				border-radius: 20px;
-				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+				height: 100%;
+				object-fit: cover;
+				border-radius: 25px;
 			}
-
 			/* BUTTON */
 			button {
 				margin-top: 20px;
