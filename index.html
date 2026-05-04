@@ -57,10 +57,13 @@
 
 			/* TEXT */
 			.caption {
-				margin-top: 25px;
+				margin-top: 20px;
 				font-size: 15px;
-				line-height: 1.7;
+				line-height: 1.4; /* 🔥 lebih rapet */
 				color: white;
+				max-width: 420px;
+				margin-left: auto;
+				margin-right: auto;
 				display: none;
 			}
 		</style>
@@ -94,9 +97,12 @@ Aku sayang kamu, selalu.`;
 			let i = 0;
 
 			function playVideo() {
-				video.muted = false; // 🔥 nyalain suara
-				video.volume = 1; // maksimal
+				video.muted = true;
 				video.play();
+
+				setTimeout(() => {
+					video.muted = false;
+				}, 300);
 
 				caption.style.display = "block";
 				typeText();
@@ -105,7 +111,7 @@ Aku sayang kamu, selalu.`;
 			function typeText() {
 				if (i < text.length) {
 					if (text[i] === "\n") {
-						caption.innerHTML += "<br><br>";
+						caption.innerHTML += "<br>";
 					} else {
 						caption.innerHTML += text[i];
 					}
