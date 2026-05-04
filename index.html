@@ -1,121 +1,171 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Heart Text Animation</title>
+		<title>Untuk Kamu 💙</title>
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Pacifico&display=swap"
+			rel="stylesheet"
+		/>
 
 		<style>
 			body {
 				margin: 0;
-				background: url("us.jpeg") no-repeat center center fixed;
-				background-size: cover;
-				overflow: hidden;
-				font-family: monospace;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: linear-gradient(135deg, #89cff0, #b6e0fe);
+				font-family: "Poppins", sans-serif;
+				text-align: center;
 			}
 
-			canvas {
+			.page {
+				display: none;
+			}
+
+			.page.active {
 				display: block;
-				background: transparent;
+			}
+
+			h1 {
+				font-family: "Pacifico", cursive;
+				font-size: 36px;
+				color: white;
+			}
+
+			p {
+				color: white;
+				font-size: 18px;
+			}
+
+			video {
+				width: 90%;
+				max-width: 400px;
+				border-radius: 20px;
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+			}
+
+			button {
+				margin-top: 20px;
+				padding: 12px 25px;
+				border-radius: 30px;
+				border: none;
+				background: white;
+				color: #4aa3df;
+				font-weight: bold;
+				cursor: pointer;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+			}
+
+			.caption {
+				margin-top: 20px;
+				color: white;
+				font-size: 16px;
+				max-width: 400px;
+				line-height: 1.6;
+				display: none;
+			}
+			.container {
+				width: 90%;
+				max-width: 500px;
+				margin: auto;
+			}
+
+			h1 {
+				font-size: clamp(26px, 6vw, 36px);
+			}
+
+			p {
+				font-size: clamp(14px, 4vw, 18px);
+			}
+
+			.caption {
+				font-size: clamp(14px, 4vw, 16px);
+				padding: 0 10px;
+			}
+
+			button {
+				font-size: clamp(14px, 4vw, 16px);
 			}
 		</style>
 	</head>
 
 	<body>
-		<canvas id="canvas"></canvas>
+		<!-- HALAMAN AWAL -->
+		<div id="page1" class="page active">
+			<h1>Hai sayangkuuu ☁️</h1>
+			<p id="typing"></p>
+			<button onclick="goToPage2()">Lanjut siniii 💙</button>
+		</div>
 
-		<!-- AUDIO -->
-		<audio id="music">
-			<source src="lagu.mp3" type="audio/mpeg" />
-		</audio>
+		<!-- HALAMAN VIDEO -->
+		<div id="page2" class="page">
+			<h1>Baca yaaa💙</h1>
+
+			<video id="video">
+				<source src="video.mp4" type="video/mp4" />
+			</video>
+
+			<br />
+
+			<button onclick="playVideo()">Play duluu dongg</button>
+
+			<div id="caption" class="caption"></div>
+		</div>
 
 		<script>
-			// ================= AUDIO =================
-			const music = document.getElementById("music");
+			// ===== TEXT HALAMAN AWAL =====
+			const textAwal = "Terimakasih ya...";
+			let a = 0;
 
-			document.addEventListener(
-				"click",
-				() => {
-					music.volume = 1;
-					music.muted = false;
-
-					music
-						.play()
-						.then(() => console.log("Audio jalan ✅"))
-						.catch((err) => console.log("Error audio:", err));
-				},
-				{ once: true },
-			);
-
-			// ================= CANVAS =================
-			const canvas = document.getElementById("canvas");
-			const ctx = canvas.getContext("2d");
-
-			function resizeCanvas() {
-				canvas.width = window.innerWidth;
-				canvas.height = window.innerHeight;
+			function typingAwal() {
+				if (a < textAwal.length) {
+					document.getElementById("typing").innerHTML += textAwal.charAt(a);
+					a++;
+					setTimeout(typingAwal, 50);
+				}
 			}
-			resizeCanvas();
-			window.addEventListener("resize", resizeCanvas);
+			typingAwal();
 
-			let particles = [];
-
-			// Fungsi hati
-			function heartFunction(t) {
-				let x = 16 * Math.pow(Math.sin(t), 3);
-				let y = -(
-					13 * Math.cos(t) -
-					5 * Math.cos(2 * t) -
-					2 * Math.cos(3 * t) -
-					Math.cos(4 * t)
-				);
-				return { x, y };
+			// ===== PINDAH HALAMAN =====
+			function goToPage2() {
+				document.getElementById("page1").classList.remove("active");
+				document.getElementById("page2").classList.add("active");
 			}
 
-			// Partikel rapi
-			let total = 200;
+			// ===== VIDEO + CAPTION =====
+			const video = document.getElementById("video");
+			const caption = document.getElementById("caption");
 
-			for (let i = 0; i < total; i++) {
-				let t = (i / total) * Math.PI * 2;
-				let pos = heartFunction(t);
+			const text = `Terimakasih sudah memilih aku menjadi kekasihmu, terimakasih sudah melakukan semuanya untuk aku
+Terimakasih untuk semua kebahagiaan yang kamu kasih untuk aku. Maaf kalau aku belum cukup baik untuk kamu, 
+maaf kalau aku masih suka bikin kamu kesal, maaf untuk semua kesalahan aku yang di sengaja maupun tidak di sengaja. 
+Aku beruntung bisa kenal kamu, aku beruntung bisa ketemu kamu, aku senang kamu masuk ke hidup aku. 
+Selalu sama aku ya, kita capai wishlist kita bareng bareng.
+Aku sayang kamu, selalu.`;
 
-				particles.push({
-					x: pos.x,
-					y: pos.y,
-					// 🔥 ukuran teks responsive
-					size: Math.max(10, Math.min(window.innerWidth / 40, 18)),
-					alpha: Math.random() * 0.5 + 0.5,
-					speed: Math.random() * 0.01 + 0.005,
-					text: "i love you",
-				});
+			let i = 0;
+
+			function playVideo() {
+				video.play();
+				caption.style.display = "block";
+				typeText();
 			}
 
-			function animate() {
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-				// 🔥 scale otomatis sesuai layar
-				let scale = Math.min(canvas.width, canvas.height) / 40;
-
-				particles.forEach((p) => {
-					let drawX = canvas.width / 2 + p.x * scale;
-					let drawY = canvas.height / 2 + p.y * scale;
-
-					p.alpha += p.speed;
-					if (p.alpha > 1 || p.alpha < 0.4) p.speed *= -1;
-
-					ctx.fillStyle = `rgba(255,77,109,${p.alpha})`;
-					ctx.font = p.size + "px monospace";
-
-					ctx.shadowColor = "#ff4d6d";
-					ctx.shadowBlur = 8;
-
-					ctx.fillText(p.text, drawX, drawY);
-				});
-
-				requestAnimationFrame(animate);
+			function typeText() {
+				if (i < text.length) {
+					if (text.charAt(i) === "\n") {
+						caption.innerHTML += "<br><br>";
+					} else {
+						caption.innerHTML += text.charAt(i);
+					}
+					i++;
+					setTimeout(typeText, 25);
+				}
 			}
-
-			animate();
 		</script>
 	</body>
 </html>
