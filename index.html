@@ -1,121 +1,118 @@
 <!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Untuk Kamu 💙</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Untuk Kamu 💙</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Pacifico&display=swap" rel="stylesheet">
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Pacifico&display=swap"
+			rel="stylesheet"
+		/>
 
-<style>
-html, body {
-	margin: 0;
-	padding: 0;
-	font-family: "Poppins", sans-serif;
-	background: linear-gradient(180deg, #89CFF0, #B6E0FE);
-}
+		<style>
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: "Poppins", sans-serif;
+				background: linear-gradient(180deg, #89cff0, #b6e0fe);
+			}
 
-/* CONTAINER NORMAL (NO FLEX CENTER!) */
-.container {
-	max-width: 500px;
-	margin: 0 auto;
-	padding: 30px 15px 80px;
-	text-align: center;
-}
+			/* CONTAINER NORMAL (NO FLEX CENTER!) */
+			.container {
+				max-width: 500px;
+				margin: 0 auto;
+				padding: 30px 15px 80px;
+				text-align: center;
+			}
 
-/* TITLE */
-h1 {
-	font-family: "Pacifico", cursive;
-	font-size: 28px;
-	color: white;
-	margin-bottom: 20px;
-}
+			/* TITLE */
+			h1 {
+				font-family: "Pacifico", cursive;
+				font-size: 28px;
+				color: white;
+				margin-bottom: 20px;
+			}
 
-/* VIDEO */
-video {
-	width: 100%;
-	border-radius: 20px;
-	box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
+			/* VIDEO */
+			video {
+				width: 100%;
+				border-radius: 20px;
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+			}
 
-/* BUTTON */
-button {
-	margin-top: 20px;
-	padding: 12px 25px;
-	border-radius: 30px;
-	border: none;
-	background: white;
-	color: #4aa3df;
-	font-weight: bold;
-	cursor: pointer;
-	box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
+			/* BUTTON */
+			button {
+				margin-top: 20px;
+				padding: 12px 25px;
+				border-radius: 30px;
+				border: none;
+				background: white;
+				color: #4aa3df;
+				font-weight: bold;
+				cursor: pointer;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+			}
 
-/* TEXT */
-.caption {
-	margin-top: 25px;
-	font-size: 15px;
-	line-height: 1.7;
-	color: white;
-	display: none;
-}
-</style>
-</head>
+			/* TEXT */
+			.caption {
+				margin-top: 25px;
+				font-size: 15px;
+				line-height: 1.7;
+				color: white;
+				display: none;
+			}
+		</style>
+	</head>
 
-<body>
+	<body>
+		<div class="container">
+			<h1>Ini buat kamu 💙</h1>
 
-<div class="container">
+			<!-- 🔥 FIX VIDEO -->
+			<video id="video" playsinline webkit-playsinline>
+				<source src="video.mp4" type="video/mp4" />
+			</video>
 
-<h1>Ini buat kamu 💙</h1>
+			<button onclick="playVideo()">Play dulu dongg 💙</button>
 
-<!-- 🔥 FIX VIDEO -->
-<video id="video" playsinline webkit-playsinline>
-	<source src="video.mp4" type="video/mp4">
-</video>
+			<div id="caption" class="caption"></div>
+		</div>
 
-<button onclick="playVideo()">Play dulu dongg 💙</button>
+		<script>
+			const video = document.getElementById("video");
+			const caption = document.getElementById("caption");
 
-<div id="caption" class="caption"></div>
-
-</div>
-
-<script>
-const video = document.getElementById("video");
-const caption = document.getElementById("caption");
-
-const text = `Terimakasih sudah memilih aku menjadi kekasihmu, terimakasih sudah melakukan semuanya untuk aku
-
+			const text = `Terimakasih sudah memilih aku menjadi kekasihmu, terimakasih sudah melakukan semuanya untuk aku
 Terimakasih untuk semua kebahagiaan yang kamu kasih untuk aku. Maaf kalau aku belum cukup baik untuk kamu,
-
 maaf kalau aku masih suka bikin kamu kesal, maaf untuk semua kesalahan aku yang disengaja maupun tidak.
-
 Aku beruntung bisa kenal kamu, aku beruntung bisa ketemu kamu, aku senang kamu masuk ke hidup aku.
-
 Selalu sama aku ya, kita capai wishlist kita bareng bareng.
-
 Aku sayang kamu, selalu.`;
 
-let i = 0;
+			let i = 0;
 
-function playVideo() {
-	video.muted = true; // 🔥 WAJIB untuk iPhone biar nggak fullscreen
-	video.play();
-	caption.style.display = "block";
-	typeText();
-}
+			function playVideo() {
+				video.muted = false; // 🔥 nyalain suara
+				video.volume = 1; // maksimal
+				video.play();
 
-function typeText() {
-	if (i < text.length) {
-		if (text[i] === "\n") {
-			caption.innerHTML += "<br><br>";
-		} else {
-			caption.innerHTML += text[i];
-		}
-		i++;
-		setTimeout(typeText, 20);
-	}
-}
-</script>
+				caption.style.display = "block";
+				typeText();
+			}
 
-</body>
+			function typeText() {
+				if (i < text.length) {
+					if (text[i] === "\n") {
+						caption.innerHTML += "<br><br>";
+					} else {
+						caption.innerHTML += text[i];
+					}
+					i++;
+					setTimeout(typeText, 20);
+				}
+			}
+		</script>
+	</body>
 </html>
